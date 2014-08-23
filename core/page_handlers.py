@@ -11,7 +11,9 @@ class IndexPage(BaseHandler):
     def get(self):
 		result = ''
 		try:
-			result = urllib2.urlopen(settings.TRANSPARENCIA_API)
+			opener = urllib2.build_opener()
+			opener.addheaders = [('App-Token', settings.TRANSPARENCIA_TOKEN), ('Content-Type', 'application/json'), ('Accept', 'application/json')]
+			result = opener.open(settings.TRANSPARENCIA_API)
 		except urllib2.URLError, e:
 			result = str(e)
 
