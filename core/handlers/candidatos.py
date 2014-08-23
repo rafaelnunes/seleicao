@@ -8,6 +8,7 @@ import logging as log
 from webapp2 import redirect_to, redirect
 from google.appengine.api import images
 from google.appengine.ext.webapp import blobstore_handlers
+from google.appengine.ext import ndb
 
 from core.base import BaseHandler, user_required
 from core.models import Partido, Candidato
@@ -33,15 +34,12 @@ class CandidatosHandler(BaseHandler):
 		"SUPERIOR COMPLETO": 6	
 		}
 		
-		candidatos = Candidato.query(Candidato.estado == estado, 				
-				# ndb.AND(cargo!="",Candidato.cargo == cargo), 
-				# ndb.AND(reeleicao!="",Candidato.reeleicao == reeleicao),
-				# ndb.AND(faltas_sessoes!="",Candidato.faltas_sessoes <= faltas_sessoes),
-				# ndb.AND(faltas_comissoes!="",Candidato.faltas_comissoes <= faltas_comissoes),
-				# ndb.AND(instrucao!="", grau[Candidato.instrucao] >= instrucao),
-				# ndb.AND(processos!="", Candidato.processos == processos),				
+
+		candidatos = Candidato.query().filter( 				
+				 ndb.AND(Candidato.estado == estado), 	
+				 ndb.AND(Candidato.cargo == cargo), 
+				 ndb.AND(Candidato.reeleicao == bool(reeleicao)),
 				).fetch()
 
-		candidatos = [candidato.to_dict() for candidato in candidatos]
 
 		return self.render('show_candidatos.html', candidatos=candidatos)

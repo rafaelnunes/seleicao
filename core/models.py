@@ -43,6 +43,7 @@ class Candidato(BaseModel):
     estado = ndb.StringProperty()
     instrucao = ndb.StringProperty()
     reeleicao = ndb.BooleanProperty()
+    processor = ndb.BooleanProperty()
 
     #estatisticas
     faltas_plenario = ndb.FloatProperty()

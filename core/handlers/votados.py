@@ -13,11 +13,11 @@ class VotadosHandler(BaseHandler):
     def get(self):
 		usuario = self.logged
 		
-		votaria_ids = Voto.query(Voto.usuario == usuario, Voto.pontos == 1).fetch()
+		votaria_ids = Voto.query(Voto.usuario == usuario.email_address, Voto.pontos == 1).fetch()
 		
-		nao_votaria_ids = Voto.query(Voto.usuario == usuario, Voto.pontos == -1).fetch()
+		nao_votaria_ids = Voto.query(Voto.usuario == usuario.email_address, Voto.pontos == -1).fetch()
 		
-		talvez_votaria_ids = Voto.query(Voto.usuario == usuario, Voto.pontos == 0).fetch()
+		talvez_votaria_ids = Voto.query(Voto.usuario == usuario.email_address, Voto.pontos == 0).fetch()
 		
 		votaria = ndb.get_multi([ndb.Key('Voto', k.candidato_id) for k in votaria_ids])
 		
