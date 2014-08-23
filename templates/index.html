@@ -3,4 +3,35 @@
 {% block content %}
     <h1>INDEX</h1>
     {{ result }}
+
+    <div id="rootwizard">
+        <ul class="nav nav-pills" style="margin-bottom: 20px;">
+            <li><a href="#tab1" data-toggle="tab">Passo 1</a></li>
+            <li><a href="#tab2" data-toggle="tab">Passo 2</a></li>
+            <li><a href="#tab3" data-toggle="tab">Passo 3</a></li>
+            <li><a href="#tab4" data-toggle="tab">Passo 4</a></li>
+            <li><a href="#tab5" data-toggle="tab">Passo 5</a></li>
+            <li><a href="#tab6" data-toggle="tab">Passo 6</a></li>
+            <li><a href="#tab7" data-toggle="tab">Passo 7</a></li>
+        </ul>
+
+        <div id="bar" class="progress progress-striped active">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane" id="tab1">1</div>
+            <div class="tab-pane" id="tab2">2</div>
+            <div class="tab-pane" id="tab3">3</div>
+            <div class="tab-pane" id="tab4">4</div>
+            <div class="tab-pane" id="tab5">5</div>
+            <div class="tab-pane" id="tab6">6</div>
+            <div class="tab-pane" id="tab7">7</div>
+
+            <ul class="pager wizard">
+                <li class="previous"><a href="#">Anterior</a></li>
+                <li class="next"><a href="#">Próximo</a></li>
+            </ul>
+        </div>  
+    </div>
 {% endblock %}

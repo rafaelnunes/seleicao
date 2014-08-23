@@ -1,0 +1,65 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="col-md-4 col-md-offset-4">
+    <div id="signin" {% if register_errors %}style="display:none;"{% endif %}>
+        <h1>Acessar conta</h1>
+        <form name="signin" action="/login" method="post">
+            
+            {% for error in errors %}
+            <p class="bg-danger text-danger">{{ error }}</p>
+            {% endfor %}
+
+            <div class="form-group">
+                <label for="username">E-mail:</label>
+                <input type="email" name="username" class="form-control" id="username" placeholder="E-mail">
+            </div>
+
+            <div class="form-group">
+                <label for="passwd">Senha:</label>
+                <input type="password" name="passwd" class="form-control" id="passwd" placeholder="Senha">
+            </div>
+
+            <p class="text-right">
+                <input class="btn btn-primary" type="submit" name="submit" value="Acessar" />
+                <a class="btn" href="/">Cancelar</a>
+            </p>
+        </form>
+    </div>
+
+    <hr>
+    <p class="text-center">ou</p>
+    <p class="text-center"><button id="btn_toggle_signup" class="btn btn-info">Criar conta</button></p>
+
+    <div id="signup" {% if not register_errors %}style="display:none;"{% endif %}>
+        <h3>Nova conta</h3>
+        <form name="signup" action="/register" method="post">
+            
+            {% for error in register_errors %}
+            <p class="bg-danger text-danger">{{ error }}</p>
+            {% endfor %}
+
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="email" name="name" class="form-control" id="name" placeholder="Nome">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="E-mail">
+            </div>
+
+            <div class="form-group">
+                <label for="passwd">Senha:</label>
+                <input type="password" name="passwd" class="form-control" id="passwd" placeholder="Senha">
+            </div>
+
+            <p class="text-right">
+                <input class="btn btn-primary" type="submit" name="submit" value="Cadastrar" />
+                <a class="btn" href="/">Cancelar</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
