@@ -41,7 +41,6 @@ class ProfileHandler(BaseHandler):
 			result = opener.open(settings.uri('candidatos')+"/"+id+ "/estatisticas")
 			estatisticas = json.decode(result.read())
 			profile["estatisticas"] = estatisticas
-			
 		except urllib2.URLError, e:
 			profile = []
 		return self.render_json(profile)

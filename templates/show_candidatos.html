@@ -9,9 +9,13 @@
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">
                     <h3>{{ candidato.nome}}</h3>
-                    <p id="apelido"><strong>Apelido: </strong> </p>
-                    <p id="cargo"><strong>Cargo: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
-                    
+                    <div class="candidate_details" data-candidatoId="{{ candidato.candidato_id }}" id="{{ candidato.candidato_id }}">
+                            <div id="candidato-spinner">
+                                Carregando dados do candidato.....<br><br>
+                                <img src="http://i.stack.imgur.com/FhHRx.gif">
+                            </div>
+                    </div>
+
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
                     <figure>
@@ -38,8 +42,24 @@
     {% endfor %}
 
 </div>
+
+
+{% raw %} 
+<script id="tmpl_candidato_details" type="text/template">
+<p ><strong>Apelido: {{ apelido }}</strong> </p>
+<p ><strong>Cargo: </strong> {{ cargo }} </p>
+<p ><strong>Partido: </strong> {{ partido }} </p>
+<p ><strong>Estado: </strong> {{ estado }} </p>
+<p ><strong>Grau Instrucao: </strong> {{ instrucao }} </p>
+<p ><strong>Ocupação: </strong> {{ ocupacao }} </p>
+<p ><strong>Casa Atual: </strong> {{ casaAtual }} </p>
+<p ><strong>Reeleição: </strong> {{ reeleicao }} </p>
+</script>
+{% endraw %}
 {% endblock %}
 
+
 {% block custom_scripts %}
+    <script src="static/js/mustache.js"></script>
     <script src="static/js/show_candidato.js"></script>
 {% endblock %}
