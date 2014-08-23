@@ -10,15 +10,41 @@ from google.appengine.api import images
 from google.appengine.ext.webapp import blobstore_handlers
 
 from core.base import BaseHandler, user_required
-from core.models import UserProfile, Notification
+from core.models import Partido
+
+from webapp2_extras import json
+from core import settings
+import urllib2
 
 class ProfileHandler(BaseHandler):
-	@user_required
+	
 	def get(self):
-		profile = self.logged
-		can_edit = True
-
-		return self.render('app/profile.html', profile=profile, can_edit=can_edit)
+		id = self.request.get('id')
+		try:							
+			opener = urllib2.build_opener()
+			opener.addheaders = [('App-Token', settings.TRANSPARENCIA_TOKEN), ('Content-Type', 'application/json'), ('Accept', 'application/json')]
+			result = opener.open(settings.uri('candidatos')+"/"+id)
+			profile = json.decode(result.read())
+			
+			result = opener.open(settings.uri('candidatos')+"/"+id+ "/bens")
+			bens = json.decode(result.read())
+			profile["bens"] = bens
+			
+			result = opener.open(settings.uri('candidatos')+"/"+id+ "/doadores")
+			doadores = json.decode(result.read())
+			profile["doadores"] = doadores
+			
+			result = opener.open(settings.uri('candidatos')+"/"+id+ "/candidaturas")
+			candidaturas = json.decode(result.read())
+			profile["candidaturas"] = candidaturas
+			
+			result = opener.open(settings.uri('candidatos')+"/"+id+ "/estatisticas")
+			estatisticas = json.decode(result.read())
+			profile["estatisticas"] = estatisticas
+			
+		except urllib2.URLError, e:
+			profile = []
+		return self.render_json(profile)
 
 	def profile_by_user(self, profile_id):
 		profile = UserProfile.get_by_id(int(profile_id))
