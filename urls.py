@@ -8,18 +8,12 @@ from core.template_filters import get_filters
 
 from core.handlers.candidatos import CandidatosHandler
 from core.handlers.profile import *
-from core.handlers.votopositivo import *
-from core.handlers.votonegativo import *
-from core.handlers.votoneutro import *
+
 from core.handlers.votados import *
 
 routes = [
     ('/', IndexPage), 
     ('/profile', ProfileHandler), 
-    ('/votopositivo', VotoPositivoHandler), 
-    ('/votonegativo', VotoNegativoHandler), 
-    ('/votoneutro', VotoNeutroHandler),
-    ('/votoneutro', VotoNeutroHandler),
     ('/votados', VotadosHandler)
 ]
 
@@ -31,7 +25,8 @@ routes += [
     webapp2.Route('/login', handler=site.SiteHandler, handler_method='login', name='login'),
     webapp2.Route('/logout', handler=site.SiteHandler, handler_method='logout', name='logout'),
     webapp2.Route('/register', handler=site.SiteHandler, handler_method='register', name='register'),
-    webapp2.Route('/candidatos', handler=CandidatosHandler, handler_method='filter_candidatos', name='filter_candidatos')
+    webapp2.Route('/candidatos', handler=CandidatosHandler, handler_method='filter_candidatos', name='filter_candidatos'),
+    webapp2.Route('/votar', handler=VotoHandler, handler_method='registrar', name='registrar_voto')
 ]
 
 myconfig = {
