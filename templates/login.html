@@ -2,9 +2,9 @@
 
 {% block content %}
 <div class="col-md-4 col-md-offset-4">
-    <div id="signin">
+    <div id="signin" {% if register_errors %}style="display:none;"{% endif %}>
         <h1>Acessar conta</h1>
-        <form name="signin" action="/register" method="post">
+        <form name="signin" action="/login" method="post">
             
             {% for error in errors %}
             <p class="bg-danger text-danger">{{ error }}</p>
@@ -21,7 +21,7 @@
             </div>
 
             <p class="text-right">
-                <input class="btn btn-primary" type="submit" name="submit" value="Cadastrar" />
+                <input class="btn btn-primary" type="submit" name="submit" value="Acessar" />
                 <a class="btn" href="/">Cancelar</a>
             </p>
         </form>
@@ -31,12 +31,17 @@
     <p class="text-center">ou</p>
     <p class="text-center"><button id="btn_toggle_signup" class="btn btn-info">Criar conta</button></p>
 
-    <div id="signup" style="display:none;">
+    <div id="signup" {% if not register_errors %}style="display:none;"{% endif %}>
         <h3>Nova conta</h3>
         <form name="signup" action="/register" method="post">
+            
+            {% for error in register_errors %}
+            <p class="bg-danger text-danger">{{ error }}</p>
+            {% endfor %}
+
             <div class="form-group">
                 <label for="name">Nome:</label>
-                <input type="email" name="name" class="form-control" id="name" placeholder="Nome">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Nome">
             </div>
 
             <div class="form-group">

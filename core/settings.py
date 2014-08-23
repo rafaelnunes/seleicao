@@ -16,7 +16,9 @@ TRANSPARENCIA_URIS = {
 	'estados': '/estados',
 	'partidos': '/partidos',
 	'cargos': '/cargos',
-	'candidatos': '/candidatos'
+	'candidatos': '/candidatos',
+	'candidatos_by_uf_cargo': '/candidatos?estado={uf}&cargo={cargo}',
+	'candidato_stats': '/candidatos/{candidato_id}/estatisticas',
 }
 
 

@@ -37,39 +37,14 @@ class Voto(BaseModel):
 		
 class Candidato(BaseModel):
 	candidato_id = ndb.IntegerProperty()
-	apelido = ndb.StringProperty()
-	nome = ndb.StringProperty()
-	numero = ndb.IntegerProperty()
-	titulo = ndb.IntegerProperty()
-	cpf = ndb.IntegerProperty()
-	matricula = ndb.IntegerProperty()
 	cargo = ndb.StringProperty()
 	estado = ndb.StringProperty()
-	partido = ndb.StringProperty()
-	idade = ndb.IntegerProperty()
 	instrucao = ndb.StringProperty()
-	ocupacao = ndb.StringProperty()
-	mini_bio = ndb.StringProperty()
-	cargos = ndb.StringProperty()
-	previsao = ndb.FloatProperty()
-	bancadas = ndb.StringProperty()
-	processos = ndb.StringProperty()
-	casa_atual = ndb.IntegerProperty()
 	reeleicao = ndb.BooleanProperty()
-	foto = ndb.StringProperty()
-	
-	#candidaturas
-	candidaturas = ndb.IntegerProperty()
 	
 	#estatisticas
 	faltas_plenario = ndb.FloatProperty()
-	media_plenario = ndb.FloatProperty()
 	faltas_comissoes = ndb.FloatProperty()
-	media_comissoes = ndb.FloatProperty()
-	evolucao = ndb.FloatProperty()
-	ano_referencia = ndb.IntegerProperty()
-	emendas = ndb.FloatProperty()
-	media_emendas = ndb.FloatProperty()
 
 
 class UserProfile(GAEUser):
@@ -161,34 +136,6 @@ class UserProfile(GAEUser):
 
     def is_google_profile(self):
         return self.login_type == self.GOOGLE_USER
-
-    def is_facebook_profile(self):
-        return self.login_type == self.FACEBOOK_USER
-
-    def get_subjects(self):
-        return Subject.query(Subject.owner == self.key).fetch()
-
-    def get_followed_courses(self):
-        if not self.followed_courses or not self.followed_courses[0]:
-            return [] 
-
-        return [k.get() for k in self.followed_courses if k.get()  and k.get() not in self.get_subjects()]
-
-    def get_my_courses(self):
-        return self.get_subjects() + self.get_followed_courses()
-
-    def is_following(self, subject):
-        return subject.key in self.followed_courses
-
-    def has_setting(self, name):
-        settings = self.settings or {}
-        return (name in settings.keys()) and settings[name] == 'true'
-
-    def get_setting(self, setting_name):
-        if not self.settings:
-            return None
-
-        return self.settings.get(setting_name, None)
 
     def is_admin(self):
         return self.user_type == self.TYPE_ADMIN
