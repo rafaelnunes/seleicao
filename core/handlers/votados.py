@@ -24,7 +24,6 @@ class VotadosHandler(BaseHandler):
 		nao_votaria = [Candidato.query(Candidato.candidato_id == int(k.candidato_id)).fetch()[0] for k in nao_votaria_ids]
 
 		talvez_votaria = [Candidato.query(Candidato.candidato_id == int(k.candidato_id)).fetch()[0] for k in talvez_votaria_ids]
-		import pdb;pdb.set_trace()
 
 		#votaria = Candidato.query(Candidato.estado == estado, 				
 					# ndb.AND(cargo!="",Candidato.cargo == cargo), 

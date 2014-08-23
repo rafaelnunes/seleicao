@@ -41,7 +41,7 @@ class Candidato(BaseModel):
     foto = ndb.StringProperty()
     cargo = ndb.StringProperty()
     estado = ndb.StringProperty()
-    instrucao = ndb.IntegerProperty()
+    instrucao = ndb.StringProperty()
     reeleicao = ndb.BooleanProperty()
     processor = ndb.BooleanProperty()
 
