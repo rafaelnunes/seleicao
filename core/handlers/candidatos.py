@@ -22,15 +22,25 @@ class CandidatosHandler(BaseHandler):
 		reeleicao = self.request.get('reeleicao')
 		media_sessoes = self.request.get('media_sessoes')
 		media_comissoes = self.request.get('media_comissoes')
+		instrucao = self.request.get('instrucao')
 		
 		json_response = []
 		candidatos_db = Candidato.query().fetch()
 				
+		grau = {"ENSINO FUNDAMENTAL INCOMPLETO":1,		
+		"ENSINO FUNDAMENTAL COMPLETO": 2, 
+		"ENSINO MÉDIO INCOMPLETO": 3,
+		"ENSINO MÉDIO COMPLETO": 4,
+		"SUPERIOR INCOMPLETO": 5,
+		"SUPERIOR COMPLETO": 6	
+		}
+		
 		candidatos = Candidato.query(Candidato.estado == estado, 
 				# Candidato.cargo == cargo, 
 				# Candidato.reeleicao == reeleicao,
 				# Candidato.media_sessoes <= media_sessoes,
-				# Candidato.media_comissoes <= media_comissoes
+				# Candidato.media_comissoes <= media_comissoes,
+				# grau[Candidato.instrucao] >= instrucao
 				).fetch()
 
 		candidatos = [candidato.to_dict() for candidato in candidatos]
