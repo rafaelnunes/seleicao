@@ -23,10 +23,7 @@ class CandidatosHandler(BaseHandler):
 		faltas_sessoes = self.request.get('faltas_sessoes')
 		faltas_comissoes = self.request.get('faltas_comissoes')
 		instrucao = self.request.get('instrucao')
-		
-		json_response = []
-		candidatos_db = Candidato.query().fetch()
-				
+						
 		grau = {"ENSINO FUNDAMENTAL INCOMPLETO":1,		
 		"ENSINO FUNDAMENTAL COMPLETO": 2, 
 		"ENSINO MÉDIO INCOMPLETO": 3,
