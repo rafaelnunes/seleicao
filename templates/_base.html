@@ -10,6 +10,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if logged %}
+                        <li><p class="navbar-text navbar-right">Olá <strong>{{ logged.name }}</strong></p></li>
                         <li><a href="/logout">Logout</a></li>
                     {% else %}
                         <li><a href="/login">Sign in</a></li>
