@@ -6,7 +6,10 @@ from core.page_handlers import *
 from core.base import handle_404
 from core.template_filters import get_filters
 
-routes = [('/', IndexPage),
+from core.handlers.candidato import *
+from core.handlers.candidatos import *
+
+routes = [('/', IndexPage), ('/candidatos', CandidatosHandler)
 
 ]
 
