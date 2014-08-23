@@ -7,7 +7,6 @@ Created on Oct 3, 2013
 import time
 from urlparse import urlparse, parse_qs
 
-
 from google.appengine.ext import ndb
 from google.appengine.ext import blobstore
 
@@ -31,6 +30,11 @@ class Cargo(BaseModel):
 	cargo_id = ndb.IntegerProperty()
 	nome = ndb.StringProperty()
 	
+class Voto(BaseModel):
+	usuario = ndb.StringProperty()
+	candidato_id = ndb.StringProperty()
+	pontos = ndb.IntegerProperty()
+		
 class Candidato(BaseModel):
 	candidato_id = ndb.IntegerProperty()
 	apelido = ndb.StringProperty()
