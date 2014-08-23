@@ -5,11 +5,13 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h4>Selecione os atributos do seu candidato</h4></div>
             <div class="panel-body">
+                
                 <form name="search" action="candidatos" method="get" role="form">
                     <div class="row">
+
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Estados:</label>
+                                <label for="estado">Estados:</label>
                                 <select name="estado" id="estado" class="form-control">
                                     <option value="">Selecione um estado</option>
                                     {% for estado in estados %}
@@ -28,6 +30,56 @@
                                         <option value="{{ cargo.cargo_id }}">{{ cargo.nome }}</option>
                                     {% endfor %}
                                  </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="instrucao">Grau de Instrução:</label>
+                                <select name="instrucao" id="instrucao" class="form-control">
+                                    <option value="">Selecione um nivel de instrução</option>
+                                    <option value="1">Ensino Fundamental Incompleto</option>
+                                    <option value="2">Ensino Fundamental Completo</option>
+                                    <option value="3">Ensino Médio Incompleto</option>
+                                    <option value="4">Ensino Médio Completo</option>
+                                    <option value="5">Superior Incompleto</option>
+                                    <option value="6">Superior Completo</option>
+                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="reeleicao">Está eleito:</label>
+                                <select name="reeleicao" id="reeleicao" class="form-control">
+                                    <option value="">Candidato deve estar eleito?</option>
+                                    <option value="true">Sim</option>
+                                    <option value="false">Não</option>
+                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="falta_sessoes">Faltas em plenário:</label>
+                                <select name="falta_sessoes" id="falta_sessoes" class="form-control">
+                                    <option value="">Percentual de falta em sessões</option>
+                                    <option value="25">menos que 25%</option>
+                                    <option value="50">menos que 50%</option>
+                                    <option value="75">menos que 75%</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="falta_comissoes">Faltas em comissões:</label>
+                                <select name="falta_comissoes" id="falta_comissoes" class="form-control">
+                                    <option value="">Percentual de falta em comissões</option>
+                                    <option value="25">menos que 25%</option>
+                                    <option value="50">menos que 50%</option>
+                                    <option value="75">menos que 75%</option>
+                                </select>
                             </div>
                         </div>
                     </div>
