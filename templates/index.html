@@ -5,15 +5,31 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h4>Selecione os atributos do seu candidato</h4></div>
             <div class="panel-body">
-                <form name="search" action="/search" method="get" role="form">
-                    <div class="form-group">
-                        <label for="name">Estados:</label>
-                        <select name="uf" id="uf" class="form-control">
-                            {{ estados }}
-                            {% for estado in estados %}
-                                <option value="{{ estado.id }}">{{ estado.sigla }}</option>
-                            {% endfor %}
-                         </select>
+                <form name="search" action="candidatos" method="get" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Estados:</label>
+                                <select name="estado" id="estado" class="form-control">
+                                    <option value="">Selecione um estado</option>
+                                    {% for estado in estados %}
+                                        <option value="{{ estado.estado_id }}">{{ estado.sigla }}</option>
+                                    {% endfor %}
+                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="cargo">Cargos:</label>
+                                <select name="cargo" id="cargo" class="form-control">
+                                    <option value="">Selecione um cargo</option>
+                                    {% for cargo in cargos %}
+                                        <option value="{{ cargo.cargo_id }}">{{ cargo.nome }}</option>
+                                    {% endfor %}
+                                 </select>
+                            </div>
+                        </div>
                     </div>
 
                     <p class="text-right">
