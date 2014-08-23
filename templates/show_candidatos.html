@@ -2,45 +2,44 @@
 
 {% block content %}
     <div class="container">
-    {% for candidato in candidatos %}
-    <div class="row {% if loop.index > 1 %}hidex {% endif %}" data-candidatoid="{{ candidato.candidato_id }}">
-        <div class="col-md-12">
-         <div class="well profile col-md-6">
-            <div class="col-sm-12">
-                <div class="col-xs-12 col-sm-8">
-                    <h3>{{ candidato.nome}}</h3>
-                    <div class="candidate_details" data-candidatoId="{{ candidato.candidato_id }}" id="{{ candidato.candidato_id }}">
-                            <div id="candidato-spinner">
-                                Carregando dados do candidato.....<br><br>
-                                <img src="http://i.stack.imgur.com/FhHRx.gif">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            {% for candidato in candidatos %}
+                <div class="well profile">
+                    <div class="col-sm-12">
+                        <div class="col-xs-12 col-sm-8">
+                            <h3>{{ candidato.nome}}</h3>
+                            <div class="candidate_details" data-candidatoId="{{ candidato.candidato_id }}" id="{{ candidato.candidato_id }}">
+                                    <div id="candidato-spinner">
+                                        Carregando dados do candidato.....<br><br>
+                                        <img src="http://i.stack.imgur.com/FhHRx.gif">
+                                    </div>
                             </div>
-                    </div>
 
-                </div>             
-                <div class="col-xs-12 col-sm-4 text-center">
-                    <figure>
-                        <img src="{{ candidato.foto}}" alt="" class="img-circle img-responsive">
-                    </figure>
-                </div>
-            </div>            
-            <div class="col-xs-12 divider text-center top-15">
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <button class="btn btn-success btn-block btn-success btn-voto" data-candidato="{{ candidato.candidato_id}}" data-voto="1"><span class="fa fa-plus-circle"></span> Voto </button>
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <button class="btn btn-info btn-block btn-warning btn-voto" data-candidato="{{ candidato.candidato_id}}" data-voto="0"><span class="fa fa-user"></span> Não Voto </button>
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <div class="btn-group dropup btn-block">
-                      <button class="btn btn-info btn-block btn-danger btn-voto" data-candidato="{{ candidato.candidato_id}}" data-voto="-1"><span class="fa fa-user"></span> Anulo </button>  
+                        </div>             
+                        <div class="col-xs-12 col-sm-4 text-center">
+                            <figure>
+                                <img src="{{ candidato.foto}}" alt="" class="img-circle img-responsive">
+                            </figure>
+                        </div>
+                    </div>            
+                    <div class="col-xs-12 divider text-center top-15">
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <div class="btn-group dropup btn-block">
+                              <button class="btn btn-info btn-block btn-danger btn-voto" data-candidato="{{ candidato.candidato_id}}" data-voto="-1"><span class="fa fa-user"></span> Não voto </button>  
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <button class="btn btn-info btn-block btn-warning btn-voto" data-candidato="{{ candidato.candidato_id}}" data-voto="0"><span class="fa fa-user"></span> Talvez votaria </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <button class="btn btn-success btn-block btn-success btn-voto" data-candidato="{{ candidato.candidato_id}}" data-voto="1"><span class="fa fa-plus-circle"></span> Eu voto! </button>
+                        </div>
                     </div>
-                </div>
-            </div>
-         </div>                 
+                 </div>
+            {% endfor %}
         </div>
     </div>
-    {% endfor %}
-
 </div>
 
 
