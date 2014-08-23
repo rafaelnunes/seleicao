@@ -7,8 +7,9 @@ from core.base import handle_404
 from core.template_filters import get_filters
 
 from core.handlers.candidatos import CandidatosHandler
+from core.handlers.profile import *
 
-routes = [('/', IndexPage),
+routes = [('/', IndexPage), ('/profile', ProfileHandler)
 
 ]
 
