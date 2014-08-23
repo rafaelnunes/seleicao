@@ -12,6 +12,7 @@ class IndexPage(BaseHandler):
         estados = []
         try:
             estados = Estado.query().fetch()
+            estados = sorted(estados, key=lambda x: x.sigla)
         except urllib2.URLError, e:
             result = str(e)
 
