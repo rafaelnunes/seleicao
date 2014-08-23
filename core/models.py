@@ -32,7 +32,7 @@ class Cargo(BaseModel):
 	nome = ndb.StringProperty()
 	
 class Candidato(BaseModel):
-	id = ndb.IntegerProperty()
+	candidato_id = ndb.IntegerProperty()
 	apelido = ndb.StringProperty()
 	nome = ndb.StringProperty()
 	numero = ndb.IntegerProperty()

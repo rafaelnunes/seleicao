@@ -14,7 +14,8 @@ TRANSPARENCIA_TOKEN = 'Pesjr4Qtq9jZ'
 
 TRANSPARENCIA_URIS = {
 	'estados': '/estados',
-	'partidos': '/partidos'
+	'partidos': '/partidos',
+	'cargos': '/cargos'
 }
 
 
