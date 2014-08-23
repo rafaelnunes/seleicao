@@ -6,20 +6,22 @@
         <div class="panel panel-danger">
             <div class="panel-heading"><h4>Não voto</h4></div>
             <div class="panel-body">
+                {% for nao_candidato in nao_votaria %}
                 <div class="well profile">
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
-                            <h3>Roberto Duarte</h3>
-                            <p id="apelido"><strong>Apelido: </strong> </p>
-                            <p id="cargo"><strong>Cargo: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
+                            <h3>{{nao_candidato.nome}}</h3>
+                            <p id="faltas_p"><strong>Faltas plenário: {{ nao_candidato.faltas_plenario }} %</strong> </p>
+                            <p id="faltas_c"><strong>Faltas comissões: {{ nao_candidato.faltas_comissoes }} %</strong> </p>
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
-                                <img src="http://divulgacand2014.tse.jus.br/divulga-cand-2014/eleicao/2014/UF/AC/foto/10000000355.jpg" alt="" class="img-circle img-responsive">
+                                <img src="{{nao_candidato.foto}}" alt="" class="img-circle img-responsive">
                             </figure>
                         </div>
                     </div>
                  </div> 
+                 {% endfor %}
             </div>
         </div>
     </div>
@@ -28,20 +30,22 @@
         <div class="panel panel-warning">
             <div class="panel-heading"><h4>Talvez votaria</h4></div>
             <div class="panel-body">
+                {% for talvez_candidato in talvez_votaria %}
                 <div class="well profile">
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
-                            <h3>Roberto Duarte</h3>
-                            <p id="apelido"><strong>Apelido: </strong> </p>
-                            <p id="cargo"><strong>Cargo: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
+                            <h3>{{talvez_candidato.nome}}</h3>
+                            <p id="faltas_p"><strong>Faltas plenário: {{ talvez_candidato.faltas_plenario }} %</strong> </p>
+                            <p id="faltas_c"><strong>Faltas comissões: {{ talvez_candidato.faltas_comissoes }} %</strong> </p>
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
-                                <img src="http://divulgacand2014.tse.jus.br/divulga-cand-2014/eleicao/2014/UF/AC/foto/10000000355.jpg" alt="" class="img-circle img-responsive">
+                                <img src="{{talvez_candidato.foto}}" alt="" class="img-circle img-responsive">
                             </figure>
                         </div>
                     </div>
                  </div> 
+                 {% endfor %} 
             </div>
         </div>
     </div>
@@ -50,20 +54,22 @@
         <div class="panel panel-success">
             <div class="panel-heading"><h4>Eu voto!</h4></div>
             <div class="panel-body">
+                {% for candidato in votaria %}
                 <div class="well profile">
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
-                            <h3>Roberto Duarte</h3>
-                            <p id="apelido"><strong>Apelido: </strong> </p>
-                            <p id="cargo"><strong>Cargo: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
+                            <h3>{{candidato.nome}}</h3>
+                            <p id="faltas_p"><strong>Faltas plenário: {{ candidato.faltas_plenario }} %</strong> </p>
+                            <p id="faltas_c"><strong>Faltas comissões: {{ candidato.faltas_comissoes }} %</strong> </p>
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
-                                <img src="http://divulgacand2014.tse.jus.br/divulga-cand-2014/eleicao/2014/UF/AC/foto/10000000355.jpg" alt="" class="img-circle img-responsive">
+                                <img src="{{candidato.foto}}" alt="" class="img-circle img-responsive">
                             </figure>
                         </div>
                     </div>
                  </div> 
+                 {% endfor %} 
             </div>
         </div>
     </div>
