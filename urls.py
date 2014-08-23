@@ -11,10 +11,16 @@ from core.handlers.profile import *
 from core.handlers.votopositivo import *
 from core.handlers.votonegativo import *
 from core.handlers.votoneutro import *
+from core.handlers.votados import *
 
-routes = [('/', IndexPage), ('/profile', ProfileHandler), ('/votopositivo', VotoPositivoHandler), 
-('/votonegativo', VotoNegativoHandler), ('/votoneutro', VotoNeutroHandler) 
-
+routes = [
+    ('/', IndexPage), 
+    ('/profile', ProfileHandler), 
+    ('/votopositivo', VotoPositivoHandler), 
+    ('/votonegativo', VotoNegativoHandler), 
+    ('/votoneutro', VotoNeutroHandler),
+    ('/votoneutro', VotoNeutroHandler),
+    ('/votados', VotadosHandler)
 ]
 
 routes += [
