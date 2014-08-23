@@ -9,7 +9,8 @@ from core.template_filters import get_filters
 from core.handlers.candidatos import CandidatosHandler
 from core.handlers.profile import *
 
-routes = [('/', IndexPage), ('/profile', ProfileHandler)
+routes = [('/', IndexPage), ('/profile', ProfileHandler), ('/votopositivo', VotoPositivoHandler), 
+('/votonegativo', VotoNegativoHandler), ('/votoneutro', VotoNeutroHandler) 
 
 ]
 

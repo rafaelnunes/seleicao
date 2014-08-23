@@ -20,17 +20,24 @@ class CandidatosHandler(BaseHandler):
 		estado = self.request.get('estado')
 		cargo = self.request.get('cargo')
 		reeleicao = self.request.get('reeleicao')
-		media_sessoes = self.request.get('media_sessoes')
-		media_comissoes = self.request.get('media_comissoes')
+		faltas_sessoes = self.request.get('faltas_sessoes')
+		faltas_comissoes = self.request.get('faltas_comissoes')
+		instrucao = self.request.get('instrucao')
+						
+		grau = {"ENSINO FUNDAMENTAL INCOMPLETO":1,		
+		"ENSINO FUNDAMENTAL COMPLETO": 2, 
+		"ENSINO MÉDIO INCOMPLETO": 3,
+		"ENSINO MÉDIO COMPLETO": 4,
+		"SUPERIOR INCOMPLETO": 5,
+		"SUPERIOR COMPLETO": 6	
+		}
 		
-		json_response = []
-		candidatos_db = Candidato.query().fetch()
-				
-		candidatos = Candidato.query(Candidato.estado == estado, 
-				# Candidato.cargo == cargo, 
-				# Candidato.reeleicao == reeleicao,
-				# Candidato.media_sessoes <= media_sessoes,
-				# Candidato.media_comissoes <= media_comissoes
+		candidatos = Candidato.query(Candidato.estado == estado, 				
+				# ndb.AND(cargo!="",Candidato.cargo == cargo), 
+				# ndb.AND(reeleicao!="",Candidato.reeleicao == reeleicao),
+				# ndb.AND(faltas_sessoes!="",Candidato.faltas_sessoes <= faltas_sessoes),
+				# ndb.AND(faltas_comissoes!="",Candidato.faltas_comissoes <= faltas_comissoes),
+				# ndb.AND(instrucao!="", grau[Candidato.instrucao] >= instrucao)
 				).fetch()
 
 		candidatos = [candidato.to_dict() for candidato in candidatos]
