@@ -7,7 +7,7 @@ Created on Sept 26, 2013
 from google.appengine.ext import ndb
 
 from core.base import BaseHandler
-from core.models import Voto
+from core.models import Voto, Candidato
 
 class VotadosHandler(BaseHandler):
     def get(self):
@@ -19,12 +19,13 @@ class VotadosHandler(BaseHandler):
 		
 		talvez_votaria_ids = Voto.query(Voto.usuario == usuario.email_address, Voto.pontos == 0).fetch()
 		
-		votaria = ndb.get_multi([ndb.Key('Voto', k.candidato_id) for k in votaria_ids])
+		votaria = [Candidato.query(Candidato.candidato_id == int(k.candidato_id)).fetch()[0] for k in votaria_ids]
 		
-		nao_votaria = ndb.get_multi([ndb.Key('Voto', k.candidato_id) for k in nao_votaria_ids])
+		nao_votaria = [Candidato.query(Candidato.candidato_id == int(k.candidato_id)).fetch()[0] for k in nao_votaria_ids]
 
-		talvez_votaria = ndb.get_multi([ndb.Key('Voto', k.candidato_id) for k in talvez_votaria_ids])
-		
+		talvez_votaria = [Candidato.query(Candidato.candidato_id == int(k.candidato_id)).fetch()[0] for k in talvez_votaria_ids]
+		import pdb;pdb.set_trace()
+
 		#votaria = Candidato.query(Candidato.estado == estado, 				
 					# ndb.AND(cargo!="",Candidato.cargo == cargo), 
 					# ndb.AND(reeleicao!="",Candidato.reeleicao == reeleicao),
