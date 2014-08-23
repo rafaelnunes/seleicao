@@ -6,10 +6,9 @@ from core.page_handlers import *
 from core.base import handle_404
 from core.template_filters import get_filters
 
-from core.handlers.candidato import *
-from core.handlers.candidatos import *
+from core.handlers.candidatos import CandidatosHandler
 
-routes = [('/', IndexPage), ('/candidatos', CandidatosHandler)
+routes = [('/', IndexPage),
 
 ]
 
@@ -20,7 +19,8 @@ routes += [
 	webapp2.Route('/api/load_transparencia', handler=api.APIHandler, handler_method='load_transparencia', name='load_transparencia'),
     webapp2.Route('/login', handler=site.SiteHandler, handler_method='login', name='login'),
     webapp2.Route('/logout', handler=site.SiteHandler, handler_method='logout', name='logout'),
-    webapp2.Route('/register', handler=site.SiteHandler, handler_method='register', name='register')
+    webapp2.Route('/register', handler=site.SiteHandler, handler_method='register', name='register'),
+    webapp2.Route('/candidatos', handler=CandidatosHandler, handler_method='filter_candidatos', name='filter_candidatos')
 ]
 
 myconfig = {
