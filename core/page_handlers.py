@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Sept 26, 2013
-
-@author: Rafael Nunes
-'''
 import datetime
+import urllib2
 
 from core.base import BaseHandler
+from core import settings
 
 
 
 class IndexPage(BaseHandler):
     def get(self):
-        current_time = datetime.datetime.now()
+		result = ''
+		try:
+			result = urllib2.urlopen(settings.TRANSPARENCIA_API)
+		except urllib2.URLError, e:
+			result = str(e)
 
-        return self.render('site/site.html', current_time=current_time)
+		return self.render('index.html', result=result)
 
     def about(self):
     	return self.render('about.html')

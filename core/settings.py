@@ -8,8 +8,7 @@ Created on Sept 26, 2013
 HOST_NAME = 'http://projetootimizei.appspot.com'
 EMAIL_SENDER = 'Otimizei<otimizeiconsultoriaweb@gmail.com>'
 
-TEMPLATE_USING_ANGULAR = (
-	'app/search_people_result.html',
-)
+TRANSPARENCIA_API = 'http://api.transparencia.org.br/api/v1/'
+TRANSPARENCIA_TOKEN = 'Pesjr4Qtq9jZ'
 
 from core.local_settings import *

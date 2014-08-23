@@ -56,7 +56,7 @@ class BaseHandler(webapp2.RequestHandler):
             return self.jinja2.render_template(filename, **ctx)
             
         def render(self, filename, **template_args):
-            ctx = {'logged': self.logged, 'use_angular': filename in settings.TEMPLATE_USING_ANGULAR}
+            ctx = {'logged': self.logged}
             ctx.update(template_args)
 
             self.response.write(self.jinja2.render_template(filename, **ctx))
