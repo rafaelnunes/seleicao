@@ -10,7 +10,7 @@ from google.appengine.api import mail
 from google.appengine.api import search
 from google.appengine.ext import deferred
 
-from webapp2 import redirect_to, redirect, uri_for
+from webapp2 import uri_for
 
 from webapp2_extras import json
 from webapp2_extras.auth import InvalidAuthIdError
@@ -18,8 +18,7 @@ from webapp2_extras.auth import InvalidPasswordError
 from webapp2_extras import security
 
 from core.base import BaseHandler
-from core.util import strip_tags
-from core.models import UserProfile, SiteContact
+from core.models import UserProfile
 from core import settings
 
 class SiteHandler(BaseHandler):
@@ -31,7 +30,7 @@ class SiteHandler(BaseHandler):
 
 			try:
 				auth_user = self.auth.get_user_by_password(user, passwd, remember=is_remember)
-				return self.redirect('/dashboard', permanent=True)
+				return self.redirect('/', permanent=True)
 			except (InvalidAuthIdError, InvalidPasswordError):
 				log.info('Login failed. Wrong email or password: %s | %s' %(user, passwd))
 				errors = ['Login failed. Wrong email or password!']
@@ -45,7 +44,7 @@ class SiteHandler(BaseHandler):
 			if not self.auth.get_user_by_session():
 				return self.render('login.html')
 			else:
-				return self.redirect_to('dashboard')
+				return self.redirect_to('/')
 
 	def login_facebook(self):
 		fb_object = json.decode(self.request.get('fb_object'))
@@ -81,7 +80,7 @@ class SiteHandler(BaseHandler):
 		names = fname.split()
 		self._create_new_user(email, email, passwd, name=names[0], last_name=' '.join(names[1:]))
 
-		return self.redirect_to('dashboard')
+		return self.redirect_to('/')
 
 	def logout(self):
 		self.auth.unset_session()
