@@ -23,6 +23,7 @@ class CandidatosHandler(BaseHandler):
 		faltas_sessoes = self.request.get('faltas_sessoes')
 		faltas_comissoes = self.request.get('faltas_comissoes')
 		instrucao = self.request.get('instrucao')
+		processos = self.request.get('processos')
 						
 		grau = {"ENSINO FUNDAMENTAL INCOMPLETO":1,		
 		"ENSINO FUNDAMENTAL COMPLETO": 2, 
@@ -37,7 +38,8 @@ class CandidatosHandler(BaseHandler):
 				# ndb.AND(reeleicao!="",Candidato.reeleicao == reeleicao),
 				# ndb.AND(faltas_sessoes!="",Candidato.faltas_sessoes <= faltas_sessoes),
 				# ndb.AND(faltas_comissoes!="",Candidato.faltas_comissoes <= faltas_comissoes),
-				# ndb.AND(instrucao!="", grau[Candidato.instrucao] >= instrucao)
+				# ndb.AND(instrucao!="", grau[Candidato.instrucao] >= instrucao),
+				# ndb.AND(processos!="", Candidato.processos == processos),				
 				).fetch()
 
 		candidatos = [candidato.to_dict() for candidato in candidatos]

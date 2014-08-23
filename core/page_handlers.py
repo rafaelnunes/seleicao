@@ -2,15 +2,14 @@
 import urllib2
 
 from core.base import BaseHandler
-from core.models import Cargo, Estado
+from core.models import Cargo, Estado, Partido
 
 
 class IndexPage(BaseHandler):
 
     def get(self):
         result = ''
-        estados = []
-        cargos = []
+        estados = cargos = []
         try:
             estados = Estado.query().fetch()
             cargos = Cargo.query().fetch()
