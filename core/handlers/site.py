@@ -32,8 +32,8 @@ class SiteHandler(BaseHandler):
 				auth_user = self.auth.get_user_by_password(user, passwd, remember=is_remember)
 				return self.redirect('/', permanent=True)
 			except (InvalidAuthIdError, InvalidPasswordError):
-				log.info('Acesso falhou. E-mail ou senha não conferem: %s | %s' %(user, passwd))
-				errors = ['Acesso falhou. E-mail ou senha não conferem']
+				log.info('Acesso falhou. E-mail ou senha nao conferem: %s | %s' %(user, passwd))
+				errors = ['Acesso falhou. verifique e-mail e senha']
 				return self.render('login.html', errors=errors, username=user)
 
 			except Exception as e:
@@ -44,7 +44,7 @@ class SiteHandler(BaseHandler):
 			if not self.auth.get_user_by_session():
 				return self.render('login.html')
 			else:
-				return self.redirect_to('/')
+				return self.redirect('/')
 
 	def login_facebook(self):
 		fb_object = json.decode(self.request.get('fb_object'))
@@ -78,13 +78,13 @@ class SiteHandler(BaseHandler):
 
 		registered = UserProfile.get_by_auth_id(email)
 		if registered:
-			register_errors = ['Usuário "%s" já registrado.' %registered.email]
+			register_errors = ['Escolha outro email.' % registered.email]
 			return self.render('login.html', register_errors=register_errors, username=registered.email)
 
 		names = fname.split()
 		self._create_new_user(email, email, passwd, name=names[0], last_name=' '.join(names[1:]))
 
-		return self.redirect_to('/')
+		return self.redirect('/')
 
 	def logout(self):
 		self.auth.unset_session()
@@ -100,10 +100,6 @@ class SiteHandler(BaseHandler):
 			raise Exception('User not created')
 
 		self.auth.set_session(self.auth.store.user_to_dict(user), remember=True)
-
-		# TODO send welcome email
-
-		deferred.defer(index_profile, user, _queue='profileIndex')
 
 	def forgot_password(self):
 		email = self.request.get("email")
