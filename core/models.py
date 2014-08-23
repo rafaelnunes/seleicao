@@ -22,7 +22,47 @@ class Estado(BaseModel):
 	estado_id = ndb.IntegerProperty()
 	sigla = ndb.StringProperty()
 	nome = ndb.StringProperty()
-
 	
-
-
+class Partido(BaseModel):
+	partido_id = ndb.IntegerProperty()
+	sigla = ndb.StringProperty()
+	
+class Cargo(BaseModel):
+	cargo_id = ndb.IntegerProperty()
+	nome = ndb.StringProperty()
+	
+class Candidato(BaseModel):
+	id = ndb.IntegerProperty()
+	apelido = ndb.StringProperty()
+	nome = ndb.StringProperty()
+	numero = ndb.IntegerProperty()
+	titulo = ndb.IntegerProperty()
+	cpf = ndb.IntegerProperty()
+	matricula = ndb.IntegerProperty()
+	cargo = ndb.StringProperty()
+	estado = ndb.StringProperty()
+	partido = ndb.StringProperty()
+	idade = ndb.IntegerProperty()
+	instrucao = ndb.StringProperty()
+	ocupacao = ndb.StringProperty()
+	mini_bio = ndb.StringProperty()
+	cargos = ndb.StringProperty()
+	previsao = ndb.FloatProperty()
+	bancadas = ndb.StringProperty()
+	processos = ndb.StringProperty()
+	casa_atual = ndb.IntegerProperty()
+	reeleicao = ndb.BooleanProperty()
+	foto = ndb.StringProperty()
+	
+	#candidaturas
+	candidaturas = ndb.IntegerProperty()
+	
+	#estatisticas
+	faltas_plenario = ndb.FloatProperty()
+	media_plenario = ndb.FloatProperty()
+	faltas_comissoes = ndb.FloatProperty()
+	media_comissoes = ndb.FloatProperty()
+	evolucao = ndb.FloatProperty()
+	ano_referencia = ndb.IntegerProperty()
+	emendas = ndb.FloatProperty()
+	media_emendas = ndb.FloatProperty()
