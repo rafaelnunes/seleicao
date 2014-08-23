@@ -32,8 +32,8 @@ class SiteHandler(BaseHandler):
 				auth_user = self.auth.get_user_by_password(user, passwd, remember=is_remember)
 				return self.redirect('/', permanent=True)
 			except (InvalidAuthIdError, InvalidPasswordError):
-				log.info('Login failed. Wrong email or password: %s | %s' %(user, passwd))
-				errors = ['Login failed. Wrong email or password!']
+				log.info('Acesso falhou. E-mail ou senha não conferem: %s | %s' %(user, passwd))
+				errors = ['Acesso falhou. E-mail ou senha não conferem']
 				return self.render('login.html', errors=errors, username=user)
 
 			except Exception as e:
@@ -72,10 +72,14 @@ class SiteHandler(BaseHandler):
 		email = self.request.get('email')
 		passwd = self.request.get('passwd')
 
+		if not fname or not email or not passwd:
+			register_errors = ['Informe todos os dados.']
+			return self.render('login.html', register_errors=register_errors)
+
 		registered = UserProfile.get_by_auth_id(email)
 		if registered:
-			errors = ['User "%s" already registered.' %registered.email]
-			return self.render('login.html', errors=errors, username=registered.email)
+			register_errors = ['Usuário "%s" já registrado.' %registered.email]
+			return self.render('login.html', register_errors=register_errors, username=registered.email)
 
 		names = fname.split()
 		self._create_new_user(email, email, passwd, name=names[0], last_name=' '.join(names[1:]))
