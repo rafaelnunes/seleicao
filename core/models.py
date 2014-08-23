@@ -36,15 +36,17 @@ class Voto(BaseModel):
 	pontos = ndb.IntegerProperty()
 		
 class Candidato(BaseModel):
-	candidato_id = ndb.IntegerProperty()
-	cargo = ndb.StringProperty()
-	estado = ndb.StringProperty()
-	instrucao = ndb.StringProperty()
-	reeleicao = ndb.BooleanProperty()
-	
-	#estatisticas
-	faltas_plenario = ndb.FloatProperty()
-	faltas_comissoes = ndb.FloatProperty()
+    candidato_id = ndb.IntegerProperty()
+    nome = ndb.StringProperty()
+    foto = ndb.StringProperty()
+    cargo = ndb.StringProperty()
+    estado = ndb.StringProperty()
+    instrucao = ndb.StringProperty()
+    reeleicao = ndb.BooleanProperty()
+
+    #estatisticas
+    faltas_plenario = ndb.FloatProperty()
+    faltas_comissoes = ndb.FloatProperty()
 
 
 class UserProfile(GAEUser):
