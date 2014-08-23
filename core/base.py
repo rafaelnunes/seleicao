@@ -42,6 +42,7 @@ def user_required(handler):
 
     return check_login
 
+
 class BaseHandler(webapp2.RequestHandler):
         @webapp2.cached_property
         def jinja2(self):

@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Sept 26, 2013
-
-@author: Rafael Nunes
-'''
-
-
 import webapp2
 
+from core.handlers import api
 from core.page_handlers import *
-from core.handlers import dashboard, subjects, classes, site, profile, calendar, inbox, search, config, api
 from core.base import handle_404
 from core.template_filters import get_filters
 
 routes = [('/', IndexPage),
 
+]
+
+routes += [
+	webapp2.Route(r'/not-found', handler=IndexPage, handler_method='not_found', name='not_found'),
+	webapp2.Route('/api/load_transparencia', handler=api.APIHandler, handler_method='load_transparencia', name='load_transparencia')
 ]
 
 myconfig = {

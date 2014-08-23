@@ -1,0 +1,4 @@
+cron:
+- description: buscar dados do portal da transparência diariamente
+  url: /api/load_transparencia
+  schedule: every 24 hours

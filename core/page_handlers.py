@@ -13,7 +13,7 @@ class IndexPage(BaseHandler):
 		try:
 			opener = urllib2.build_opener()
 			opener.addheaders = [('App-Token', settings.TRANSPARENCIA_TOKEN), ('Content-Type', 'application/json'), ('Accept', 'application/json')]
-			result = opener.open(settings.TRANSPARENCIA_API)
+			result = opener.open(settings.TRANSPARENCIA_API).read()
 		except urllib2.URLError, e:
 			result = str(e)
 
@@ -21,4 +21,7 @@ class IndexPage(BaseHandler):
 
     def about(self):
     	return self.render('about.html')
+
+    def not_found(self):
+    	return self.render('404.html')
 
