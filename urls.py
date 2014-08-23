@@ -8,6 +8,9 @@ from core.template_filters import get_filters
 
 from core.handlers.candidatos import CandidatosHandler
 from core.handlers.profile import *
+from core.handlers.votopositivo import *
+from core.handlers.votonegativo import *
+from core.handlers.votoneutro import *
 
 routes = [('/', IndexPage), ('/profile', ProfileHandler), ('/votopositivo', VotoPositivoHandler), 
 ('/votonegativo', VotoNegativoHandler), ('/votoneutro', VotoNeutroHandler) 
