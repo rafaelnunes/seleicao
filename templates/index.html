@@ -1,10 +1,24 @@
 {% extends '_base.html' %}
 
 {% block content %}
-    <h1>INDEX</h1>
-    {{ result }}
+    <form name="search" action="/search" method="get">
 
-    <div id="rootwizard">
+        <div class="form-group">
+            <label for="name">Estados:</label>
+            <select name="uf" id="uf">
+                {{ estados }}
+                {% for estado in estados %}
+                    <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+                {% endfor %}
+             </select>
+        </div>
+
+
+        <p class="text-right">
+            <input class="btn btn-primary" type="submit" name="submit" value="Seleicão!" />
+        </p>
+    </form>
+    <!-- <div id="rootwizard">
         <ul class="nav nav-pills" style="margin-bottom: 20px;">
             <li><a href="#tab1" data-toggle="tab">Passo 1</a></li>
             <li><a href="#tab2" data-toggle="tab">Passo 2</a></li>
@@ -20,7 +34,7 @@
         </div>
 
         <div class="tab-content">
-            <div class="tab-pane" id="tab1">1</div>
+            <div class="tab-pane" id="tab1"></div>
             <div class="tab-pane" id="tab2">2</div>
             <div class="tab-pane" id="tab3">3</div>
             <div class="tab-pane" id="tab4">4</div>
@@ -33,5 +47,5 @@
                 <li class="next"><a href="#">Próximo</a></li>
             </ul>
         </div>  
-    </div>
+    </div> -->
 {% endblock %}
