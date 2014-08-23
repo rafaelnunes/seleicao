@@ -1,0 +1,452 @@
+
+/* 
+   ------------------------------------------------------
+					Responsive Styles
+   ------------------------------------------------------
+*/
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+	/*------------------------------------------*/
+	/*	 Intro Page Content    
+	/*------------------------------------------*/
+	
+	.intro-content {margin-top: 150px;}
+	
+	/*------------------------------------------*/
+	/*	 Intro Section Slogan
+	/*------------------------------------------*/
+	
+	#intro_slogan h1 { font-size: 57px;}
+	#intro_slogan h2 { font-size: 41px;}
+	#intro_slogan h4 {font-size: 21px;}
+	
+	/*------------------------------------------*/
+	/*	 Intro Page Register Form  
+	/*------------------------------------------*/
+	
+	#intro_form { margin-bottom: 65px; }
+		
+	/*------------------------------------------*/
+	/*	What We Do  (About.html)
+	/*------------------------------------------*/
+	
+	#what-we-do .col-md-6 img { margin-top: 40px; }
+	#statistic-holder {margin-bottom: 60px;}
+	
+	#banner_image { margin-top: 40px; }
+	#banner_content h3 {font-size: 19px; line-height: 24px; font-weight: 700; margin-bottom: 20px;}		
+
+
+}
+
+
+@media only screen and (max-width: 991px){
+
+	/*------------------------------------------*/
+	/*	 Section Titlebar
+	/*------------------------------------------*/
+	
+	.titlebar p {padding: 0 2%;}	
+	
+	/*------------------------------------------*/
+	/*	 Intro Section Slogan
+	/*------------------------------------------*/
+	
+	.intro-content { margin-top: 150px; }	
+	#intro_slogan {text-align: center;}	
+	#intro_slogan h1 { font-size: 51px;}
+	#intro_slogan h2 { font-size: 37px;}
+	#intro_slogan h4 {font-size: 18px;}
+	
+	/*------------------------------------------*/
+	/*	 Intro Page Register Form  
+	/*------------------------------------------*/
+	
+	#intro_form { margin-bottom: 55px; }	
+	.form_register { width: 66%; margin-left: 0px; }
+
+	/*------------------------------------------*/
+	/*	What We Do  (About.html)
+	/*------------------------------------------*/
+	
+	#what-we-do { padding-bottom: 60px; }
+	#what-we-do .titlebar {margin-bottom: 10px; }
+	#what-we-do .col-md-6 .img-responsive { display: inline block; margin: 0 auto; margin-bottom: 50px;}
+	
+	/*------------------------------------------*/
+	/*	  Quote
+	/*------------------------------------------*/
+	
+	#quotes .col-sm-6 { padding-right: 15px; padding-left: 15px; }
+	
+	/*------------------------------------------*/
+	/*	  Works Banner
+	/*------------------------------------------*/
+	
+	#banner_content { margin-bottom: 80px; }	
+	#banner_image .img-responsive { display: inline block; margin: 0 auto; margin-bottom: 60px;}
+
+	/*------------------------------------------*/
+	/*	  Pricing Table
+	/*------------------------------------------*/
+	
+	#pricing-table-holder {padding: 0; }
+	.pricing-table .plan-title {font-size: 18px; padding: 30px 6px;}
+	.pricing-table .plan-price h2 {font-size: 40px; }
+	.pricing-table ul.features { padding: 5px;}
+	
+
+}
+
+
+@media only screen and (max-width: 767px){
+
+	#what-we-do, #features, #quotes, #clients, #banner, #screens, #partners, #pricing, #pricing-faq, #faq { padding-left: 45px; padding-right: 45px;}
+	.breadcrumb { padding: 10px 15px; }
+	#pricing-table-holder  { margin-right: 60px; margin-left: 60px;}
+	#footer_copy { padding-left: 45px; }
+	#footer_icons { padding-right: 45px; }
+	#what-we-do, #banner, #pricing, #faq { padding-top: 30px; }
+
+	/*------------------------------------------*/
+	/*	 Section Titlebar
+	/*------------------------------------------*/
+	
+	.titlebar p { font-size: 18px; padding: 0;}
+	
+	/*------------------------------------------*/
+	/*	 Intro Page Navigation Bar    
+	/*------------------------------------------*/
+
+	.navbar.navbar-fixed-top.intro {background-color: rgba(10, 10, 10, 0.65); }
+	
+	/*------------------------------------------*/
+	/*	 Intro Page Responsive Menu
+	/*------------------------------------------*/
+	
+	.navbar-nav { margin: 0 -15px;}
+	.navbar.navbar-fixed-top.intro { background-color: rgba(0, 0, 0, 0.8); }
+	#intro-nav-menu { border-top: 1px solid #444;}
+	.navbar-brand {padding: 10px 15px 10px 60px;}
+	#intro-nav-menu .navbar-nav > li { text-align: center;}
+	#intro-nav-menu .navbar-nav > li > a { line-height: 50px; text-align: center;}
+	
+	/*------------------------------------------*/
+	/*	 Navigation Menu Item Hover  
+	/*------------------------------------------*/
+
+	#intro-nav-menu .navbar-nav > li > a:hover { background-color: #428bca; }
+	
+	/*------------------------------------------*/
+	/*	 Responsive Menu
+	/*------------------------------------------*/
+	
+	.navbar-nav.navbar-fixed-top { margin: 0 -15px;}
+	#top-nav-menu { background-color: #f4f4f4; border-top: 1px solid #ddd; }
+	.navbar-brand.small-logo {padding: 15px 15px 15px 60px;}
+	#top-nav-menu .navbar-nav > li { text-align: center;}
+	#top-nav-menu .navbar-nav > li > a { line-height: 50px; text-align: center; text-align: center;}
+	
+	/*------------------------------------------*/
+	/*	 Responsive Menu
+	/*------------------------------------------*/
+	
+	.navbar-nav.navbar-fixed-top { margin: 0 -15px;}
+	#top-nav-menu { background-color: #f4f4f4; border-top: 1px solid #ddd; }
+	.navbar-brand.small-logo {padding: 15px 15px 15px 60px;}
+	#top-nav-menu .navbar-nav > li { text-align: center;}
+	#top-nav-menu .navbar-nav > li > a { line-height: 50px; text-align: center; text-align: center;}
+	
+	/*------------------------------------------*/
+	/*	 Intro Section Slogan
+	/*------------------------------------------*/
+	
+	.intro-content { margin-top: 150px; }	
+	#intro_slogan {text-align: center;}	
+	#intro_slogan h1 { font-size: 51px;}
+	#intro_slogan h2 { font-size: 37px;}
+	#intro_slogan h4 {font-size: 18px;}
+	
+	/*------------------------------------------*/
+	/*	 Form Register  
+	/*------------------------------------------*/
+	
+	.form_register .form-control, .error { margin-bottom: 20px; }
+	#form_register_btn { margin-bottom: 20px; padding-left: 15px;}
+
+	/*------------------------------------------*/
+	/*	What We Do  (About.html)
+	/*------------------------------------------*/
+	
+	#what-we-do .titlebar {margin-bottom: 40px; }
+	
+	.feature-box { margin-right: 30px; margin-left: 30px; }
+	
+	/*------------------------------------------*/
+	/*	  Quote
+	/*------------------------------------------*/
+	
+	#quotes { padding-bottom: 40px; }
+	#quotes .col-sm-6 { padding-right: 60px; padding-left: 60px; margin-bottom: 40px; }
+	
+	/*------------------------------------------*/
+	/*	  Works-Banner
+	/*------------------------------------------*/
+
+	#banner_content h3 { font-size: 20px; line-height: 26px; }
+	#banner_content p {font-size: 16px;}
+
+	/*------------------------------------------*/
+	/*	 Call-To-Action
+	/*------------------------------------------*/	
+	
+	#call-to-action h1 { font-size: 32px; }
+	
+	/*------------------------------------------*/
+	/*	 Call-To-Action Button 
+	/*------------------------------------------*/
+
+	.cta-btn { font-size: 16px; }
+	
+	#choose_price, #more_questions { margin: 60px 40px 0; }
+	
+
+}
+
+
+@media (max-width: 480px) {
+
+	#what-we-do, #features, #quotes, #clients, #banner, #screens, #partners, #pricing, #pricing-faq, #faq { padding-left: 20px; padding-right: 20px;}
+	#what-we-do, #banner, #pricing, #faq { padding-top: 20px; }	
+	#pricing-table-holder  { margin-right: 10px; margin-left: 10px;}
+	
+	#choose_price, #more_questions { margin: 60px 0 0; }
+		
+	/*------------------------------------------*/
+	/*	 Intro Section Slogan
+	/*------------------------------------------*/
+	
+	.intro-content { margin-top: 28%; }
+	#intro_slogan h1 { font-size: 42px;}
+	#intro_slogan h2 { font-size: 30px;}
+	#intro_slogan h4 {font-size: 15px;}
+	
+	.sign-in-bar a { font-size: 13px;}
+	
+	/*------------------------------------------*/
+	/*	 Form Register    
+	/*------------------------------------------*/
+		
+	#intro_form { margin-bottom: 60px; }
+	.form_register { width: 90%; margin-right: 5%; margin-left: 5%;}
+	.form_register h4 { font-size: 16px; line-height: 30px; }
+	#form_register_btn { padding-left: 0px;}
+	
+	/*------------------------------------------*/
+	/*	 Intro Page Responsive Menu    
+	/*------------------------------------------*/
+
+	.navbar-brand {padding: 10px 15px 10px 40px;}
+	.navbar-toggle {margin: 16px 40px 0 0; }
+	
+	/*------------------------------------------*/
+	/*	 Responsive Menu    
+	/*------------------------------------------*/
+
+	.navbar-brand.small-logo {padding: 15px 15px 15px 40px;}
+	.navbar-toggle.black {margin: 16px 40px 0 0; }
+		
+	/*------------------------------------------*/
+	/*	 Section Titlebar
+	/*------------------------------------------*/
+
+	.titlebar h1 {font-size: 28px;}
+	.titlebar p {font-size: 17px; padding: 0 2%;}
+	
+	/*------------------------------------------*/
+	/*	What We Do  (About.html)
+	/*------------------------------------------*/
+	
+	#what-we-do h4, .feature-box-content h4, .question h4 { font-size: 16px; }
+	
+	.feature-box { margin-right: 10px; margin-left: 10px; }
+	.statistic-text { font-size: 16px; }
+	
+	/*------------------------------------------*/
+	/*	  Quote
+	/*------------------------------------------*/
+
+	#quotes .col-sm-6 { padding-right: 30px; padding-left: 30px; margin-bottom: 40px; }
+	.quote-text { font-size: 16px; line-height: 18px; }
+	
+	/*------------------------------------------*/
+	/*	  Works-Banner
+	/*------------------------------------------*/
+
+	#banner_content h2 {font-size: 24px;}
+	#banner_content h3 { font-size: 17px; line-height: 22px; }
+	
+	/*------------------------------------------*/
+	/*	  Banner List Content
+	/*------------------------------------------*/
+	
+	.list-item i { font-size: 16px; }
+	.list-item h5 {font-size: 14px;}
+	
+	/*------------------------------------------*/
+	/*	  Screens
+	/*------------------------------------------*/	
+	
+	#screenshots_holder_1 .col-xs-6, #screenshots_holder_2 .col-xs-6 { width: 100%; float: none; padding: 0 40px; }
+	
+	/*------------------------------------------*/
+	/*	 Call-To-Action
+	/*------------------------------------------*/	
+	
+	#call-to-action h1 { font-size: 28px; }
+	
+	/*------------------------------------------*/
+	/*	 Call-To-Action Button 
+	/*------------------------------------------*/
+
+	.cta-btn { font-size: 14px; }
+	
+	/*------------------------------------------*/
+	/*	 Partners Logo 
+	/*------------------------------------------*/
+	
+	.partner-logo { width: 50%; padding: 0 25px; }
+	
+	/*------------------------------------------*/
+	/*	 FAQs 
+	/*------------------------------------------*/
+	
+	#faqs_column_1 h2, #faqs_column_2 h2 {font-size: 24px;}
+	
+		
+	/*------------------------------------------*/
+	/*	  Footer
+	/*------------------------------------------*/
+	
+	#footer_copy, #footer_icons { width: 100%; float: none !important; text-align: center; padding: 0;}
+	#footer_copy { margin-bottom: 10px;}
+
+	
+}
+
+
+@media (max-width: 320px) {
+
+	/*------------------------------------------*/
+	/*	 Section Titlebar
+	/*------------------------------------------*/
+	
+	.titlebar h1 { font-size: 26px; }	
+	
+	/*------------------------------------------*/
+	/*	 Intro Section Slogan
+	/*------------------------------------------*/
+	
+	#intro_slogan { display: none; }
+	.intro-content { margin-top: 32%; }
+	
+	.sign-in-bar a { font-size: 13px;}
+	
+	/*------------------------------------------*/
+	/*	 Form Register    
+	/*------------------------------------------*/
+	
+	#intro_form { margin-bottom: 45px; }
+	.form_register { width: 90%; margin-left: 5%; margin-right: 5%;}
+	.form_register { padding-left: 15px; padding-right: 15px;}	
+	
+	#form_register_btn .btn { font-size: 16px;}
+
+	/*------------------------------------------*/
+	/*	 Intro Page Social Icon Setting 
+	/*------------------------------------------*/
+
+	.he_social {width: 36px;height: 36px;font-size: 18px;line-height: 32px; }
+	
+	#intro_footer_copy p { font-size: 14px; font-weight: 300; }
+	
+
+	#what-we-do, #features, #quotes, #clients, #banner, #screens, #partners, #pricing, #pricing-faq, #faq { padding-left: 0px; padding-right: 0px;}	
+	#pricing-table-holder  { margin-right: 0; margin-left: 0;}
+	.customNavigation {display: none;}
+	
+	/*------------------------------------------*/
+	/*	 Intro Page Responsive Menu    
+	/*------------------------------------------*/
+
+	.navbar-brand {padding: 10px 15px 10px 30px;}
+	.navbar-toggle {margin: 16px 30px 0 0; }
+	
+	/*------------------------------------------*/
+	/*	 Responsive Menu    
+	/*------------------------------------------*/
+
+	.navbar-brand.small-logo {padding: 15px 15px 15px 30px;}
+	.navbar-toggle.black {margin: 16px 30px 0 0; }
+	
+	.breadcrumb { text-align: center !important; }
+	
+	/*------------------------------------------*/
+	/*	What We Do  (About.html)
+	/*------------------------------------------*/
+	
+	#what-we-do { padding-bottom: 30px;  }
+	.statistic-block { width: 100%; float: none; margin-bottom: 30px; }
+	
+	/*------------------------------------------*/
+	/*	Features  (About.html)
+	/*------------------------------------------*/
+	
+	.feature-box { margin-right: 2px; margin-left: 2px; }
+	
+	/*------------------------------------------*/
+	/*	  Quote
+	/*------------------------------------------*/
+
+	#quotes .col-sm-6 { padding-right: 10px; padding-left: 10px; margin-bottom: 40px; }
+	
+	/*------------------------------------------*/
+	/*	  Works-Banner
+	/*------------------------------------------*/
+
+	#banner_content h2 {font-size: 20px;}
+	
+	/*------------------------------------------*/
+	/*	  Screens
+	/*------------------------------------------*/	
+	
+	#screenshots_holder_1 .col-xs-6, #screenshots_holder_2 .col-xs-6 { padding: 0 20px; }
+	
+	/*------------------------------------------*/
+	/*	 Call-To-Action
+	/*------------------------------------------*/	
+	
+	#call-to-action h1 { font-size: 26px; }
+	
+	/*------------------------------------------*/
+	/*	 Call-To-Action Button 
+	/*------------------------------------------*/
+
+	.cta-btn { font-size: 13px; }
+	
+	/*------------------------------------------*/
+	/*	 Partners Logo 
+	/*------------------------------------------*/
+	
+	.partner-logo { width: 100%; padding: 0 60px; }
+		
+	/*------------------------------------------*/
+	/*	 FAQs 
+	/*------------------------------------------*/
+	
+	#faqs_column_1 h2, #faqs_column_2 h2 {font-size: 20px;}
+		
+
+}
