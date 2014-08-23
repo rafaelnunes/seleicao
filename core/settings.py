@@ -15,7 +15,9 @@ TRANSPARENCIA_TOKEN = 'Pesjr4Qtq9jZ'
 TRANSPARENCIA_URIS = {
 	'estados': '/estados',
 	'partidos': '/partidos',
-	'cargos': '/cargos'
+	'cargos': '/cargos',
+	'candidatos_by_uf_cargo': '/candidatos?estado={uf}&cargo={cargo}',
+	'candidato_stats': '/candidatos/{candidato_id}/estatisticas',
 }
 
 

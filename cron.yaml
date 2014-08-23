@@ -1,4 +1,8 @@
 cron:
-- description: buscar dados do portal da transparência diariamente
-  url: /api/load_transparencia
-  schedule: every 24 hours
+- description: buscar dados gerais do portal da transparência diariamente
+  url: /api/load_dados_transparencia
+  schedule: every day 04:00
+
+- description: buscar dados de candidatos do portal da transparência diariamente
+  url: /api/load_candidatos_transparencia
+  schedule: every day 04:30

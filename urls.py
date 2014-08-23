@@ -12,7 +12,8 @@ routes = [('/', IndexPage),
 
 routes += [
 	webapp2.Route(r'/not-found', handler=IndexPage, handler_method='not_found', name='not_found'),
-	webapp2.Route('/api/load_transparencia', handler=api.APIHandler, handler_method='load_transparencia', name='load_transparencia')
+	webapp2.Route('/api/load_dados_transparencia', handler=api.APIHandler, handler_method='load_dados_transparencia', name='load_dados_transparencia'),
+	webapp2.Route('/api/load_candidatos_transparencia', handler=api.APIHandler, handler_method='load_candidatos_transparencia', name='load_candidatos_transparencia')
 ]
 
 myconfig = {
