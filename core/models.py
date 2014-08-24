@@ -51,36 +51,6 @@ class Candidato(BaseModel):
 
 
 class UserProfile(GAEUser):
-    APP_USER = 0
-    GOOGLE_USER = 1
-    FACEBOOK_USER = 2
-
-    TYPE_STUDENT = 0
-    TYPE_ADMIN = 1
-    TYPE_STAFF = 2
-
-    TYPE_CHOICES = {
-        TYPE_STUDENT: 'Estudante',
-        TYPE_ADMIN: 'Admin',
-        TYPE_STAFF: 'Staff',
-    }
-
-    gplus_user = ndb.StringProperty()
-    fcbk_user = ndb.StringProperty()
-
-    login_type = ndb.IntegerProperty(default=APP_USER)
-    avatar = ndb.BlobKeyProperty()
-    about = ndb.TextProperty()
-    website = ndb.StringProperty()
-    fcbk_url = ndb.StringProperty()
-    tw_url = ndb.StringProperty()
-    gplus_url = ndb.StringProperty()
-
-    followed_courses = ndb.KeyProperty(kind='Subject', repeated=True)
-
-    settings = ndb.JsonProperty()
-
-    user_type = ndb.IntegerProperty(default=TYPE_STUDENT)
 
     def set_password(self, raw_password):
         self.password = security.generate_password_hash(raw_password, length=12)
@@ -112,39 +82,8 @@ class UserProfile(GAEUser):
     def email(self):
         return self.email_address
 
-    @property
-    def short_about(self):
-        return self.about or ""
-
-    @property
-    def full_name(self):
-        return '%s %s' %(self.name, self.last_name)
-
-    @property
-    def short_about(self):
-        short = ''
-        if self.about:
-            short = self.about[:50] + '...'
-
-        return short
-
     def get_name_or_email(self):
         if not self.name:
             return self.email_address
 
         return self.name
-
-    def is_app_profile(self):
-        return self.login_type == self.APP_USER
-
-    def is_google_profile(self):
-        return self.login_type == self.GOOGLE_USER
-
-    def is_admin(self):
-        return self.user_type == self.TYPE_ADMIN
-
-    def is_staff(self):
-        return self.user_type == self.TYPE_STAFF
-
-    def is_student(self):
-        return self.user_type == self.TYPE_STUDENT
