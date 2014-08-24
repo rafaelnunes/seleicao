@@ -139,9 +139,13 @@ def _put_candidate(candidato):
         else:
             candidato_stats = {}
 
-        Candidato(candidato_id=int(candidato['id']), instrucao=candidato['instrucao'], reeleicao=candidato['reeleicao'], cargo=candidato['cargo'],
-                  estado=candidato['estado'], nome=candidato[
-                      'nome'], foto=candidato['foto'],
+        Candidato(candidato_id=int(candidato['id']), 
+                  instrucao=candidato['instrucao'], 
+                  reeleicao=candidato['reeleicao'], 
+                  cargo=candidato['cargo'],
+                  estado=candidato['estado'], 
+                  nome=candidato['nome'], 
+                  foto=candidato['foto'],
                   faltas_plenario=float(candidato_stats.get('faltas_plen', 0)),
                   faltas_comissoes=float(candidato_stats.get('faltas_com', 0))).put()
     except urllib2.URLError, e:
