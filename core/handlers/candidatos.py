@@ -16,30 +16,30 @@ from core.models import Partido, Candidato
 from core import settings
 import urllib2
 
+
 class CandidatosHandler(BaseHandler):
-	def filter_candidatos(self):	
-		estado = self.request.get('estado')
-		cargo = self.request.get('cargo')
-		reeleicao = self.request.get('reeleicao')
-		faltas_sessoes = self.request.get('faltas_sessoes')
-		faltas_comissoes = self.request.get('faltas_comissoes')
-		instrucao = self.request.get('instrucao')
-		processos = self.request.get('processos')
-						
-		grau = {"ENSINO FUNDAMENTAL INCOMPLETO":1,		
-		"ENSINO FUNDAMENTAL COMPLETO": 2, 
-		"ENSINO MÉDIO INCOMPLETO": 3,
-		"ENSINO MÉDIO COMPLETO": 4,
-		"SUPERIOR INCOMPLETO": 5,
-		"SUPERIOR COMPLETO": 6	
-		}
-		
 
-		candidatos = Candidato.query().filter( 				
-				 ndb.AND(Candidato.estado == estado), 	
-				 ndb.AND(Candidato.cargo == cargo), 
-				 ndb.AND(Candidato.reeleicao == bool(reeleicao)),
-				).fetch()
+    def filter_candidatos(self):
+        estado = self.request.get('estado')
+        cargo = self.request.get('cargo')
+        reeleicao = self.request.get('reeleicao')
+        faltas_sessoes = self.request.get('faltas_sessoes')
+        faltas_comissoes = self.request.get('faltas_comissoes')
+        instrucao = self.request.get('instrucao')
+        processos = self.request.get('processos')
 
+        grau = {"ENSINO FUNDAMENTAL INCOMPLETO": 1,
+                "ENSINO FUNDAMENTAL COMPLETO": 2,
+                "ENSINO MÉDIO INCOMPLETO": 3,
+                "ENSINO MÉDIO COMPLETO": 4,
+                "SUPERIOR INCOMPLETO": 5,
+                "SUPERIOR COMPLETO": 6
+                }
 
-		return self.render('show_candidatos.html', candidatos=candidatos)
+        candidatos = Candidato.query().filter(
+            ndb.AND(Candidato.estado == estado),
+            ndb.AND(Candidato.cargo == cargo),
+            ndb.AND(Candidato.reeleicao == bool(reeleicao)),
+        ).fetch()
+
+        return self.render('show_candidatos.html', candidatos=candidatos)

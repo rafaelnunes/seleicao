@@ -4,7 +4,7 @@ Created on Sept 26, 2013
 
 @author: Rafael Nunes
 '''
-import logging as log 
+import logging as log
 
 from google.appengine.api import mail
 from google.appengine.api import search
@@ -21,185 +21,194 @@ from core.base import BaseHandler
 from core.models import UserProfile
 from core import settings
 
+
 class SiteHandler(BaseHandler):
-	def login(self):
-		if self.request.method == 'POST':
-			user = self.request.get('username')
-			passwd = self.request.get('passwd')
-			is_remember = True if self.request.get('remember') else False
 
-			try:
-				auth_user = self.auth.get_user_by_password(user, passwd, remember=is_remember)
-				return self.redirect('/', permanent=True)
-			except (InvalidAuthIdError, InvalidPasswordError):
-				log.info('Acesso falhou. E-mail ou senha nao conferem: %s | %s' %(user, passwd))
-				errors = ['Acesso falhou. verifique e-mail e senha']
-				return self.render('login.html', errors=errors, username=user)
+    def login(self):
+        if self.request.method == 'POST':
+            user = self.request.get('username')
+            passwd = self.request.get('passwd')
+            is_remember = True if self.request.get('remember') else False
 
-			except Exception as e:
-				log.info(str(e))
-				errors = [str(e)]
-				return self.render('login.html', errors=errors, username=user)
-		else:
-			if not self.auth.get_user_by_session():
-				return self.render('login.html')
-			else:
-				return self.redirect('/')
+            try:
+                auth_user = self.auth.get_user_by_password(
+                    user, passwd, remember=is_remember)
+                return self.redirect('/', permanent=True)
+            except (InvalidAuthIdError, InvalidPasswordError):
+                log.info(
+                    'Acesso falhou. E-mail ou senha nao conferem: %s | %s' % (user, passwd))
+                errors = ['Acesso falhou. verifique e-mail e senha']
+                return self.render('login.html', errors=errors, username=user)
 
-	def login_facebook(self):
-		fb_object = json.decode(self.request.get('fb_object'))
+            except Exception as e:
+                log.info(str(e))
+                errors = [str(e)]
+                return self.render('login.html', errors=errors, username=user)
+        else:
+            if not self.auth.get_user_by_session():
+                return self.render('login.html')
+            else:
+                return self.redirect('/')
 
-		try:
-			auth_user = self.auth.get_user_by_password(fb_object['username'], fb_object['id'], remember=True)
-		except (InvalidAuthIdError, InvalidPasswordError):
-			self._create_new_user(fb_object['username'], fb_object['email'], fb_object['id'], name=fb_object['first_name'], 
-				last_name=fb_object['last_name'], fcbk_url=fb_object['link'], login_type=UserProfile.FACEBOOK_USER, fcbk_user=fb_object['id'])
+    def login_facebook(self):
+        fb_object = json.decode(self.request.get('fb_object'))
 
-		self.render_json({'redirect_to': uri_for('dashboard')})
+        try:
+            auth_user = self.auth.get_user_by_password(
+                fb_object['username'], fb_object['id'], remember=True)
+        except (InvalidAuthIdError, InvalidPasswordError):
+            self._create_new_user(fb_object['username'], fb_object['email'], fb_object['id'], name=fb_object['first_name'],
+                                  last_name=fb_object['last_name'], fcbk_url=fb_object['link'], login_type=UserProfile.FACEBOOK_USER, fcbk_user=fb_object['id'])
 
-	def login_gplus(self):
-		gplus = json.decode(self.request.get('gplus_object'))
-		try:
-			auth_user = self.auth.get_user_by_password(gplus['email'], gplus['id'], remember=True)
-		except (InvalidAuthIdError, InvalidPasswordError):
-			self._create_new_user(gplus['email'], gplus['email'], gplus['id'], name=gplus['first_name'], 
-				last_name=gplus['last_name'], gplus_url=gplus['url'], login_type=UserProfile.GOOGLE_USER, gplus_user=gplus['id'])
+        self.render_json({'redirect_to': uri_for('dashboard')})
 
-		self.render_json({'redirect_to': uri_for('dashboard')})
+    def login_gplus(self):
+        gplus = json.decode(self.request.get('gplus_object'))
+        try:
+            auth_user = self.auth.get_user_by_password(
+                gplus['email'], gplus['id'], remember=True)
+        except (InvalidAuthIdError, InvalidPasswordError):
+            self._create_new_user(gplus['email'], gplus['email'], gplus['id'], name=gplus['first_name'],
+                                  last_name=gplus['last_name'], gplus_url=gplus['url'], login_type=UserProfile.GOOGLE_USER, gplus_user=gplus['id'])
 
-	def register(self):
-		fname = self.request.get('name')
-		email = self.request.get('email')
-		passwd = self.request.get('passwd')
+        self.render_json({'redirect_to': uri_for('dashboard')})
 
-		if not fname or not email or not passwd:
-			register_errors = ['Informe todos os dados.']
-			return self.render('login.html', register_errors=register_errors)
+    def register(self):
+        fname = self.request.get('name')
+        email = self.request.get('email')
+        passwd = self.request.get('passwd')
 
-		registered = UserProfile.get_by_auth_id(email)
-		if registered:
-			register_errors = ['Escolha outro email.' % registered.email]
-			return self.render('login.html', register_errors=register_errors, username=registered.email)
+        if not fname or not email or not passwd:
+            register_errors = ['Informe todos os dados.']
+            return self.render('login.html', register_errors=register_errors)
 
-		names = fname.split()
-		self._create_new_user(email, email, passwd, name=names[0], last_name=' '.join(names[1:]))
+        registered = UserProfile.get_by_auth_id(email)
+        if registered:
+            register_errors = ['Escolha outro email.' % registered.email]
+            return self.render('login.html', register_errors=register_errors, username=registered.email)
 
-		return self.redirect('/')
+        names = fname.split()
+        self._create_new_user(
+            email, email, passwd, name=names[0], last_name=' '.join(names[1:]))
 
-	def logout(self):
-		self.auth.unset_session()
-		self.redirect('/')
+        return self.redirect('/')
 
-	def _create_new_user(self, username, email, passwd, **user_attributes):
-		user_data = self.user_model.create_user(username, [], 
-			email_address=email,password_raw=passwd, verified=False, **user_attributes)
-		
-		# If not user_data, create failed
-		user = user_data[1]
-		if not user:
-			raise Exception('User not created')
+    def logout(self):
+        self.auth.unset_session()
+        self.redirect('/')
 
-		self.auth.set_session(self.auth.store.user_to_dict(user), remember=True)
+    def _create_new_user(self, username, email, passwd, **user_attributes):
+        user_data = self.user_model.create_user(username, [],
+                                                email_address=email, password_raw=passwd, verified=False, **user_attributes)
 
-	def forgot_password(self):
-		email = self.request.get("email")
+        # If not user_data, create failed
+        user = user_data[1]
+        if not user:
+            raise Exception('User not created')
 
-		user = UserProfile.get_by_auth_id(email)
+        self.auth.set_session(
+            self.auth.store.user_to_dict(user), remember=True)
 
-		if not user:
-			return self.render_json({'success': False, 'title': 'Sorry.', 'message': 'Nenhum usuário com o email "%s" foi encontrado.' %email})
+    def forgot_password(self):
+        email = self.request.get("email")
 
-		new_password = security.generate_random_string(length=8)
-		user.set_password(new_password)
-		print 'New Password ======================> ', new_password
+        user = UserProfile.get_by_auth_id(email)
 
-		user.put()
+        if not user:
+            return self.render_json({'success': False, 'title': 'Sorry.', 'message': 'Nenhum usuário com o email "%s" foi encontrado.' % email})
 
-		deferred.defer(send_forgot_password_email, user=user, new_passwd=new_password, _queue='sendEmail') #TODO improve this queue params/conf
+        new_password = security.generate_random_string(length=8)
+        user.set_password(new_password)
+        print 'New Password ======================> ', new_password
 
-		return self.render_json({'success': True, 'title': 'Senha reiniciada.', 'message': 'Enviamos um email para %s com sua nova senha' %email})
+        user.put()
 
-	def change_password(self):
-		newpass = self.request.get("newpass")		
-		user = self.logged
+        # TODO improve this queue params/conf
+        deferred.defer(send_forgot_password_email, user=user,
+                       new_passwd=new_password, _queue='sendEmail')
 
-		user.set_password(str(newpass))
-		user.put()
+        return self.render_json({'success': True, 'title': 'Senha reiniciada.', 'message': 'Enviamos um email para %s com sua nova senha' % email})
 
-		return self.render_json({'success': True})
+    def change_password(self):
+        newpass = self.request.get("newpass")
+        user = self.logged
 
-	def not_found(self):
-		return self.render('app/404.html')
+        user.set_password(str(newpass))
+        user.put()
 
-	def about(self):
-		return self.render('about.html')
+        return self.render_json({'success': True})
 
-	def blogueiras(self):
-		return self.render('site/blogueiras.html')
+    def not_found(self):
+        return self.render('app/404.html')
 
-	def ead(self):
-		return self.render('index.html')		
-	
-	def save_contact(self):
-		contact = SiteContact()
-		contact.name = self.request.get('name')
-		contact.last_name = self.request.get('lastname')
-		contact.email = self.request.get('email')
-		contact.phone = self.request.get('phone')
+    def about(self):
+        return self.render('about.html')
 
-		contact.put()
+    def blogueiras(self):
+        return self.render('site/blogueiras.html')
 
-		template = self.render_str("email/contato-site.html", contact=contact)
-		mail.send_mail(sender=settings.EMAIL_SENDER,
-			to='educando@otimizei.com.br',
-			subject='Novo Contato Educando',
-			body=template
-			)
+    def ead(self):
+        return self.render('index.html')
 
-		return self.render_json({'success': True, 'message': 'Obrigado! Entraremos em contato em breve!'})
+    def save_contact(self):
+        contact = SiteContact()
+        contact.name = self.request.get('name')
+        contact.last_name = self.request.get('lastname')
+        contact.email = self.request.get('email')
+        contact.phone = self.request.get('phone')
 
-	def contact_news(self):
-		contact = SiteContact()
-		contact.email = self.request.get('email')
-		contact.contact_type = SiteContact.TYPE_NEWS
+        contact.put()
 
-		contact.put()
+        template = self.render_str("email/contato-site.html", contact=contact)
+        mail.send_mail(sender=settings.EMAIL_SENDER,
+                       to='educando@otimizei.com.br',
+                       subject='Novo Contato Educando',
+                       body=template
+                       )
 
-		return self.render_json({'success': True, 'message': 'Obrigado! Você agora faz parte de nossa newsletter.'})
+        return self.render_json({'success': True, 'message': 'Obrigado! Entraremos em contato em breve!'})
 
+    def contact_news(self):
+        contact = SiteContact()
+        contact.email = self.request.get('email')
+        contact.contact_type = SiteContact.TYPE_NEWS
+
+        contact.put()
+
+        return self.render_json({'success': True, 'message': 'Obrigado! Você agora faz parte de nossa newsletter.'})
 
 
 def index_profile(user):
-	try:
-		doc = search.Document(
-		doc_id = str(user.key.id()),
-		fields=[
-		   search.TextField(name='first_name', value=user.name),
-		   search.TextField(name='last_name', value=user.last_name),
-		   search.TextField(name='email', value=user.email),
-		])
+    try:
+        doc = search.Document(
+            doc_id=str(user.key.id()),
+            fields=[
+                search.TextField(name='first_name', value=user.name),
+                search.TextField(name='last_name', value=user.last_name),
+                search.TextField(name='email', value=user.email),
+            ])
 
-		index = search.Index(name="profileIndex")
-		index.put(doc)
-	except search.Error:
-		# TODO send admin email
-		log.exception('Error indexing subject[%s]' %user.key.id())	
+        index = search.Index(name="profileIndex")
+        index.put(doc)
+    except search.Error:
+        # TODO send admin email
+        log.exception('Error indexing subject[%s]' % user.key.id())
 
 
 def send_forgot_password_email(user, new_passwd):
-	message = mail.EmailMessage(sender=settings.EMAIL_SENDER,
-                            subject="Your new password")
+    message = mail.EmailMessage(sender=settings.EMAIL_SENDER,
+                                subject="Your new password")
 
-	message.to = "%s <%s>" %(user.full_name, user.email)
-	message.body = """
-	Olá %s:
+    message.to = "%s <%s>" % (user.full_name, user.email)
+    message.body = """
+    Olá %s:
 
-	Você solicitou que sua senha fosse reiniciada.
-	Sua nova senha é: %s
+    Você solicitou que sua senha fosse reiniciada.
+    Sua nova senha é: %s
 
-	Qualquer problema ou dúvida, entre em contato conosco.
+    Qualquer problema ou dúvida, entre em contato conosco.
 
-	Obrigado,
-	""" %(user.name, new_passwd)
+    Obrigado,
+    """ % (user.name, new_passwd)
 
-	message.send()
+    message.send()
